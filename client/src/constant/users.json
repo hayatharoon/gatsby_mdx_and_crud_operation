@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Basit",
+    "username": "basit123",
+    "age": 30,
+    "nationality": "CANADA"
+  },
+  {
+    "id": 2,
+    "name": "Faisal",
+    "username": "faisal23",
+    "age": 30,
+    "nationality": "PAKISTAN"
+  },
+  {
+    "id": 3,
+    "name": "Haroon",
+    "username": "haroon750",
+    "age": 30,
+    "nationality": "ENGLAND"
+  },
+  {
+    "id": 4,
+    "name": "Hamid",
+    "username": "hamid444",
+    "age": 30,
+    "nationality": "INDIA"
+  },
+  {
+    "id": 5,
+    "name": "Kamran",
+    "username": "kamran22",
+    "age": 30,
+    "nationality": "DUBIA"
+  }
+]
