@@ -24,10 +24,10 @@ export const typeDefs = `#graphql
 
   input updateUserInput{
     id: ID!
-    newName: String!
-    newUsername: String!
-    newAge: Int!
-    newNationality: String!
+    name: String!
+    username: String!
+    age: Int!
+    nationality: String!
   }
 
   type Mutation {

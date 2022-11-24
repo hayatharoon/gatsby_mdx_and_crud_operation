@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import DisplayUsers from '../components/DisplayUsers';
+
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
@@ -10,6 +11,7 @@ const client = new ApolloClient({
 });
 
 const BlogIndex = () => {
+  
   return (
     <ApolloProvider client={client}>
       <Layout>

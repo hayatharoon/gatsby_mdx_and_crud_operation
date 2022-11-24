@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, gql, useMutation } from '@apollo/client';
+import Modal from '../components/Modal/Modal';
 
 const GET_USERS = gql`
   query getUsers {
@@ -32,29 +33,35 @@ const DELETE_USER = gql`
   }
 `;
 
-const EDIT_USER = gql`
-  mutation UpdateUser($input: updateUserInput!) {
-    updateUser(input: $input) {
-      id
-      newName
-      newUsername
-      newAge
-      newNationality
-    }
-  }
-`;
+// const EDIT_USER = gql`
+//   mutation UpdateUser($input: updateUserInput!) {
+//     updateUser(input: $input) {
+//       id
+//       newName
+//       newUsername
+//       newAge
+//       newNationality
+//     }
+//   }
+// `;
 
 const DisplayUsers = () => {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [age, setAge] = useState('');
   const [nationality, setNationality] = useState('');
-  const [show, hide] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [editId, setEditId] = useState('');
 
   const { loading, error, data, refetch } = useQuery(GET_USERS);
   const [createUser] = useMutation(CREATE_USER);
   const [deleteUser] = useMutation(DELETE_USER);
-  const [updateUser] = useMutation(EDIT_USER);
+  // const [updateUser] = useMutation(EDIT_USER);
+
+  const openModal = id => {
+    setIsOpen(true);
+    setEditId(id);
+  };
 
   if (loading) {
     return <h3>Loading...</h3>;
@@ -138,6 +145,7 @@ const DisplayUsers = () => {
                 },
               },
             });
+            alert('Successfully create user!');
             refetch();
           }}
         >
@@ -152,23 +160,8 @@ const DisplayUsers = () => {
             <span>Username: {username}</span>
             <p>Age: {age}</p>
             <p>From: {nationality}</p>
-            <button
-              onClick={() => {
-                updateUser({
-                  variables: {
-                    input: {
-                      id: id,
-                      name: name,
-                      username: username,
-                      age: +age,
-                      nationality: nationality,
-                    },
-                  },
-                });
-              }}
-            >
-              Update User
-            </button>
+            <button onClick={() => openModal(id)}>Update User</button>
+            {isOpen && <Modal id={editId} setIsOpen={setIsOpen} />}
             <button
               onClick={() => {
                 deleteUser({
@@ -176,6 +169,7 @@ const DisplayUsers = () => {
                     id: id,
                   },
                 });
+                alert('Successfully delete user!');
                 refetch();
               }}
               style={{ margin: '0 10px' }}

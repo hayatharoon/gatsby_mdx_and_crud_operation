@@ -20,14 +20,14 @@ export const resolvers = {
     },
 
     updateUser: (parent, args, context, info) => {
-      const { id, newName, newUsername, newAge, newNationality } = args.input;
+      const { id, name, username, age, nationality } = args.input;
       let updatedUser;
       UserList.forEach((user) => {
         if (user.id === +id) {
-          user.name = newName;
-          user.username = newUsername;
-          user.age = newAge;
-          user.nationality = newNationality;
+          user.name = name;
+          user.username = username;
+          user.age = age;
+          user.nationality = nationality;
           updatedUser = user;
         }
       });
